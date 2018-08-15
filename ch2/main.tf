@@ -38,6 +38,10 @@ resource "aws_security_group" "instance" {
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
+
+    lifecycle {
+        create_before_destroy = true
+    }
 }
 
 resource "aws_autoscaling_group" "example" {
@@ -74,7 +78,7 @@ resource "aws_elb" "example" {
         unhealthy_threshold = 2
         timeout = 3
         interval = 30
-        target = "HTTP:${var.server_port}"
+        target = "HTTP:${var.server_port}/"
     }
 }
 
