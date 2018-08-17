@@ -10,6 +10,7 @@ resource "aws_s3_bucket" "terraform_state" {
     }
 }
 
+# this section was added after terraform apply was run on the above code
 terraform {
   backend "s3" {
     bucket  = "terraform-up-and-running-state-aug2018"
